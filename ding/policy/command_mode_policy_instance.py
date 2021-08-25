@@ -10,6 +10,7 @@ from .rainbow import RainbowDQNPolicy
 from .r2d2 import R2D2Policy
 from .sqn import SQNPolicy
 from .ppo import PPOPolicy, PPOOffPolicy
+from .trex_ppooff import TREXPPOOffPolicy
 from .ppg import PPGPolicy
 from .a2c import A2CPolicy
 from .impala import IMPALAPolicy
@@ -122,6 +123,9 @@ class PPOCommandModePolicy(PPOPolicy, DummyCommandModePolicy):
 class PPOOffCommandModePolicy(PPOOffPolicy, DummyCommandModePolicy):
     pass
 
+@POLICY_REGISTRY.register('trex_ppo_offpolicy_command')
+class TREXPPOOffCommandModePolicy(TREXPPOOffPolicy, DummyCommandModePolicy):
+    pass
 
 @POLICY_REGISTRY.register('a2c_command')
 class A2CCommandModePolicy(A2CPolicy, DummyCommandModePolicy):
