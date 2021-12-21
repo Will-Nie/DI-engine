@@ -4,6 +4,7 @@ Best Practice
 .. toctree::
     :maxdepth: 1
 
+    ding_env
     nstep_td
     priority
     IL
