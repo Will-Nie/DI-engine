@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Basic &mdash; DI-engine 0.1.0 documentation</title>
+  <title>How to migrate your environment to DI-engine &mdash; DI-engine 0.1.0 documentation</title>
   
 
   
@@ -94,10 +94,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../env_tutorial/index.html">RL Environments Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../distributed/index.html">Distributed</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Best Practice</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Basic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#advanced">Advanced</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dingenvwrapper">DingEnvWrapper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#q-a">Q &amp; A</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">How to migrate your environment to DI-engine</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic">Basic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#advanced">Advanced</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dingenvwrapper">DingEnvWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#q-a">Q &amp; A</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="nstep_td.html">N-step TD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="priority.html">How to Use PER(Prioritized Experience Replay)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="IL.html">Imitation Learning</a></li>
@@ -174,7 +177,7 @@
         
           <li><a href="index.html">Best Practice</a> &raquo;</li>
         
-      <li>Basic</li>
+      <li>How to migrate your environment to DI-engine</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -193,12 +196,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <p>How to migrate your environment to DI-engine
-================================================== ============</p>
+  <div class="section" id="how-to-migrate-your-environment-to-di-engine">
+<h1>How to migrate your environment to DI-engine<a class="headerlink" href="#how-to-migrate-your-environment-to-di-engine" title="Permalink to this headline">¶</a></h1>
 <p>Although a large number of commonly used Reinforcement Learning environments have been provided in <code class="docutils literal notranslate"><span class="pre">DI-zoo</span></code> (<a class="reference external" href="https://github.com/opendilab/DI-engine#environment-versatility">DI-engine supported environments</a> ), you may still need to migrate your environment to <code class="docutils literal notranslate"><span class="pre">DI-engine</span></code>. Therefore, in this section, we will introduce how to perform the above migration step by step to meet the specifications of the <code class="docutils literal notranslate"><span class="pre">DI-engine''</span> <span class="pre">basic</span> <span class="pre">environment</span> <span class="pre">base</span> <span class="pre">class</span> <span class="pre">``BaseEnv</span></code>, so that it can be easily applied in the training pipeline.</p>
 <p>The following introduction will be divided into two parts: <strong>Basic</strong> and <strong>Advanced</strong>. <strong>Basic</strong> indicates the functions that must be implemented and details that must be noticed if you want to run the pipeline correctly; <strong>Advanced</strong> indicates some expanded functions.</p>
 <div class="section" id="basic">
-<h1>Basic<a class="headerlink" href="#basic" title="Permalink to this headline">¶</a></h1>
+<h2>Basic<a class="headerlink" href="#basic" title="Permalink to this headline">¶</a></h2>
 <p>This section will introduce the specification constraints that users must obey and the functions that must be implemented when migrating the environment.</p>
 <p>If you want to use the environment in DI-engine, you need to implement a subclass environment derived from <code class="docutils literal notranslate"><span class="pre">BaseEnv</span></code>, such as <code class="docutils literal notranslate"><span class="pre">YourEnv</span></code>. The relationship between <code class="docutils literal notranslate"><span class="pre">YourEnv</span></code> and your own environment is a <a class="reference external" href="https://www.cnblogs.com/chinxi/p/7349768.html">combination</a> relationship, that is, a <code class="docutils literal notranslate"><span class="pre">YourEnv</span></code> instance will hold an instance of your own original environment.</p>
 <p>The Reinforcement Learning environment has some major interfaces commonly implemented by most environments, such as <code class="docutils literal notranslate"><span class="pre">reset()</span></code>, <code class="docutils literal notranslate"><span class="pre">step()</span></code>, <code class="docutils literal notranslate"><span class="pre">seed()</span></code>, etc. In DI-engine, <code class="docutils literal notranslate"><span class="pre">BaseEnv</span></code> will further encapsulate these interfaces. In following cases, Atari will be used as an example for description. Please refer to <a class="reference external" href="https://github.com/opendilab/DI-engine/blob/main/dizoo/atari/envs/atari_env.py">Atari Env</a> and <a class="reference external" href="https://github.com/opendilab/DI-engine/blob/main/dizoo/atari/envs/atari_wrappers.py">Atari Env Wrapper</a> for code.</p>
@@ -302,7 +305,7 @@
 </ol>
 </div>
 <div class="section" id="advanced">
-<h1>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h1>
+<h2>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p>Environment preprocessing wrapper</p>
 <p>If an environment is to be used in Reinforcement Learning training, some preprocessing is required to increase randomness, normalize data, and make training easier. These preprocessing are implemented in the form of wrapper (for the introduction of wrapper, please refer to <a class="reference external" href="../feature/wrapper_hook_overview_zh.html#wrapper">this</a> ).</p>
@@ -469,13 +472,13 @@
 </ol>
 </div>
 <div class="section" id="dingenvwrapper">
-<h1>DingEnvWrapper<a class="headerlink" href="#dingenvwrapper" title="Permalink to this headline">¶</a></h1>
+<h2>DingEnvWrapper<a class="headerlink" href="#dingenvwrapper" title="Permalink to this headline">¶</a></h2>
 <p>(in <code class="docutils literal notranslate"><span class="pre">ding/envs/env/ding_env_wrapper.py</span></code>)</p>
 <p><code class="docutils literal notranslate"><span class="pre">DingEnvWrapper</span></code> can quickly convert simple environments such as cartpole, pendulum, etc. into environments that conform to <code class="docutils literal notranslate"><span class="pre">BaseEnv</span></code>. However, more complex environments are not supported for the time being.</p>
 <p>TBD</p>
 </div>
 <div class="section" id="q-a">
-<h1>Q &amp; A<a class="headerlink" href="#q-a" title="Permalink to this headline">¶</a></h1>
+<h2>Q &amp; A<a class="headerlink" href="#q-a" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p>How should the MARL environment be migrated?</p>
 <p>You can refer to <a class="reference external" href="../env_tutorial/competitive_rl_zh.html">Competitive RL</a></p>
@@ -492,6 +495,7 @@
 </ul>
 </li>
 </ol>
+</div>
 </div>
 
 

@@ -237,12 +237,17 @@
 
     <span class="n">config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;dqn&#39;</span><span class="p">,</span>
+        <span class="c1"># (bool) Whether use cuda in policy</span>
         <span class="n">cuda</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="c1"># (bool) Whether learning policy is the same as collecting data policy(on-policy)</span>
         <span class="n">on_policy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="c1"># (bool) Whether enable priority experience sample</span>
         <span class="n">priority</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="c1"># (bool) Whether use Importance Sampling Weight to correct biased update. If True, priority must be True.</span>
         <span class="n">priority_IS_weight</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="c1"># (float) Discount factor(gamma) for returns</span>
         <span class="n">discount_factor</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span>
+        <span class="c1"># (int) The number of step for calculating target q_value</span>
         <span class="n">nstep</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">learn</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
             <span class="c1"># (bool) Whether to use multi gpu</span>
@@ -251,7 +256,9 @@
             <span class="c1"># Bigger &quot;update_per_collect&quot; means bigger off-policy.</span>
             <span class="c1"># collect data -&gt; update policy-&gt; collect data -&gt; ...</span>
             <span class="n">update_per_collect</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+            <span class="c1"># (int) How many samples in a training batch</span>
             <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+            <span class="c1"># (float) The step size of gradient descent</span>
             <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
             <span class="c1"># ==============================================================</span>
             <span class="c1"># The following configs are algorithm-specific</span>
@@ -275,7 +282,9 @@
             <span class="n">eps</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
                 <span class="c1"># (str) Decay type. Support [&#39;exp&#39;, &#39;linear&#39;].</span>
                 <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;exp&#39;</span><span class="p">,</span>
+                <span class="c1"># (float) Epsilon start value</span>
                 <span class="n">start</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+                <span class="c1"># (float) Epsilon end value</span>
                 <span class="n">end</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
                 <span class="c1"># (int) Decay length(env step)</span>
                 <span class="n">decay</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
